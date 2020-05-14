@@ -5,12 +5,13 @@ class UsersController < ApplicationController
   def index
     @users = User.all
 
-    render json: @users
+    render json: UserSerializer.new(@users).serialized_json
   end
 
   # GET /users/1
   def show
-    render json: @user
+    options = {include: [:accounts]}
+    render json: UserSerializer.new(@user, options)
   end
 
   # POST /users

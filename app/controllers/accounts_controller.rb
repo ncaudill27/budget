@@ -1,16 +1,9 @@
 class AccountsController < ApplicationController
   before_action :set_account, only: [:show, :update, :destroy]
 
-  # GET /accounts
-  def index
-    @accounts = Account.all
-
-    render json: @accounts
-  end
-
   # GET /accounts/1
   def show
-    render json: @account
+    render json: AccountSerializer.new(@account)
   end
 
   # POST /accounts
